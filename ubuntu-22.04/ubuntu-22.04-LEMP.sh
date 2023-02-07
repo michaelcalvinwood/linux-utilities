@@ -26,7 +26,6 @@ sudo apt update
 sudo apt install -y nginx
 sudo ufw app list
 sudo ufw allow 'Nginx HTTP'
-sudo apt install -y php8.1-fpm php-mysql
 
 sudo mkdir /var/www/$Domain
 
@@ -73,6 +72,14 @@ printf "<html>
   </body>
 </html>" > /var/www/$Domain/index.html
 
+# Install and Config PHP
+
+sudo apt install -y php8.1-fpm php-mysql
+
+sudo mv php.ini /etc/php/8.1/fpm/php.ini
+sudo systemctl restart php8.1-fpm.service
+sudo systemctl reload php8.1-fpm.service
+
 printf "<?php
 phpinfo();" > /var/www/$Domain/info.php
 
@@ -103,5 +110,8 @@ sudo certbot --nginx -d $Domain --non-interactive --agree-tos -m $EmailAddress
 
 sudo certbot --nginx -d www.$Domain --non-interactive --agree-tos -m $EmailAddress
 
+#Innodb_buffer_pool_size 70-80% of server memory
+#https://releem.com/docs/mysql-performance-tuning/innodb_buffer_pool_size
+#https://scalegrid.io/blog/calculating-innodb-buffer-pool-size-for-your-mysql-server/
 
 

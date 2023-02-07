@@ -7,7 +7,7 @@ else
 fi
 
 # Make sure that NOBODY can access the server without a password
-mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$1'; FLUSH PRIVILEGES;"
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$1';"
 # Kill the anonymous users
 mysql -e "DROP USER ''@'localhost'"
 # Because our hostname varies we'll use some Bash magic here.

@@ -17,4 +17,3 @@ mysql -e "DROP DATABASE test"
 # Make our changes take effect
 mysql -e "FLUSH PRIVILEGES"
 # Any subsequent tries to run queries this way will get access denied because lack of usr/pwd param
-

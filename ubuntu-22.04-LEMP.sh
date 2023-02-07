@@ -14,25 +14,19 @@ else
   exit
 fi
 
+if [ -n "$3" ]; then
+  EmailAddress=$3
+else
+  echo "Enter Second parameter: EmailAddress"
+  exit
+fi
+
+# Install and Configure nginx
 sudo apt update
 sudo apt install -y nginx
 sudo ufw app list
 sudo ufw allow 'Nginx HTTP'
-sudo ufw status
-sudo apt install -y mysql-server
 sudo apt install -y php8.1-fpm php-mysql
-
-# Make sure that NOBODY can access the server without a password
-mysql -e "UPDATE mysql.user SET Password = PASSWORD('$DBPassword') WHERE User = 'root'"
-# Kill the anonymous users
-mysql -e "DROP USER ''@'localhost'"
-# Because our hostname varies we'll use some Bash magic here.
-mysql -e "DROP USER ''@'$(hostname)'"
-# Kill off the demo database
-mysql -e "DROP DATABASE test"
-# Make our changes take effect
-mysql -e "FLUSH PRIVILEGES"
-# Any subsequent tries to run queries this way will get access denied because lack of usr/pwd param
 
 sudo mkdir /var/www/$Domain
 
@@ -40,7 +34,7 @@ sudo chown -R $USER:$USER /var/www/$Domain
 
 printf "server {
     listen 80;
-    server_name your_domain www.$Domain;
+    server_name $Domain www.$Domain;
     root /var/www/$Domain;
 
     index index.html index.htm index.php;
@@ -81,4 +75,33 @@ printf "<html>
 
 printf "<?php
 phpinfo();" > /var/www/$Domain/info.php
+
+
+# Install and Configure mysql
+sudo ufw status
+sudo apt install -y mysql-server
+
+mysql -e "UPDATE mysql.user SET Password = PASSWORD('$DBPassword') WHERE User = 'root'"
+mysql -e "DROP USER ''@'localhost'"
+mysql -e "DROP USER ''@'$(hostname)'"
+mysql -e "DROP DATABASE test"
+mysql -e "FLUSH PRIVILEGES"
+
+# Install and Configure letsencrypt ssl
+
+sudo snap install core; 
+sudo snap refresh core
+
+sudo snap install --classic certbot
+
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+sudo ufw allow 'Nginx Full'
+sudo ufw delete allow 'Nginx HTTP'
+
+sudo certbot --nginx -d $Domain --non-interactive --agree-tos -m $EmailAddress
+
+sudo certbot --nginx -d www.$Domain --non-interactive --agree-tos -m $EmailAddress
+
+
 

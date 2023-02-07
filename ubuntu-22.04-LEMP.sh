@@ -3,7 +3,7 @@
 if [ -n "$1" ]; then
   Domain=$1
 else
-  echo "First parameter not supplied."
+  echo "Enter First parameter: Domain"
 fi
 exit
 

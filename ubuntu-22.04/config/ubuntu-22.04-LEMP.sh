@@ -37,7 +37,7 @@ printf "server {
     server_name $Domain www.$Domain;
     root /var/www/$Domain;
 
-    index index.html index.htm index.php;
+    index index.php index.html index.htm;
 
     location / {
         try_files \$uri \$uri/ =404;
@@ -130,5 +130,9 @@ sudo ufw --force enable
 curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 sudo apt-get install -y nodejs
+
+# Install pm2 node process manager
+npm i pm2 -g
+
 
 

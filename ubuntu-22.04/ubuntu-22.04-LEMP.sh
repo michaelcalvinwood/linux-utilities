@@ -21,6 +21,7 @@ else
   exit
 fi
 
+
 # Install and Configure nginx
 sudo apt update
 sudo apt install -y nginx
@@ -113,5 +114,10 @@ sudo certbot --nginx -d www.$Domain --non-interactive --agree-tos -m $EmailAddre
 #Innodb_buffer_pool_size 70-80% of server memory
 #https://releem.com/docs/mysql-performance-tuning/innodb_buffer_pool_size
 #https://scalegrid.io/blog/calculating-innodb-buffer-pool-size-for-your-mysql-server/
+
+
+# Install redis
+
+sudo apt install -y redis-server
 
 

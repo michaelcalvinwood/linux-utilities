@@ -89,11 +89,12 @@ phpinfo();" > /var/www/$Domain/info.php
 sudo ufw status
 sudo apt install -y mysql-server
 
-mysql -e "UPDATE mysql.user SET Password = PASSWORD('$DBPassword') WHERE User = 'root'"
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$DBPassword';"
 mysql -e "DROP USER ''@'localhost'"
 mysql -e "DROP USER ''@'$(hostname)'"
 mysql -e "DROP DATABASE test"
 mysql -e "FLUSH PRIVILEGES"
+
 
 # Install and Configure letsencrypt ssl
 
@@ -108,16 +109,22 @@ sudo ufw allow 'Nginx Full'
 sudo ufw delete allow 'Nginx HTTP'
 
 sudo certbot --nginx -d $Domain --non-interactive --agree-tos -m $EmailAddress
-
 sudo certbot --nginx -d www.$Domain --non-interactive --agree-tos -m $EmailAddress
 
 #Innodb_buffer_pool_size 70-80% of server memory
 #https://releem.com/docs/mysql-performance-tuning/innodb_buffer_pool_size
 #https://scalegrid.io/blog/calculating-innodb-buffer-pool-size-for-your-mysql-server/
 
-
 # Install redis
-
 sudo apt install -y redis-server
+
+# To complete redis configuration follow: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-22-04
+
+# Install network tools
+apt install -y net-tools
+
+# Enable the firewall
+sudo ufw --force enable
+
 
 

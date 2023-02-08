@@ -115,19 +115,12 @@ sudo certbot --nginx -d www.$Domain --non-interactive --agree-tos -m $EmailAddre
 #https://releem.com/docs/mysql-performance-tuning/innodb_buffer_pool_size
 #https://scalegrid.io/blog/calculating-innodb-buffer-pool-size-for-your-mysql-server/
 
-# Install redis
-sudo apt install -y redis-server
-
-# To complete redis configuration follow: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-22-04
-
 # Install network tools
 apt install -y net-tools
 
 # Enable the firewall
 sudo ufw --force enable
 
-
-# Install WordPress: https://www.linode.com/docs/guides/how-to-install-wordpress-ubuntu-22-04/
 
 
 

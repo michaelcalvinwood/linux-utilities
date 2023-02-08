@@ -1,0 +1,1 @@
+# Install WordPress: https://www.linode.com/docs/guides/how-to-install-wordpress-ubuntu-22-04/

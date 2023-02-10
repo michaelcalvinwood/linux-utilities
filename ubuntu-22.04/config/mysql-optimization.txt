@@ -1,7 +1,6 @@
-GB to Byte Calculator: https://www.convertunits.com/from/GB/to/byte
+innodb_buffer_pool_size:
+    See current: SELECT @@innodb_buffer_pool_size;
 
-See current: SELECT @@innodb_buffer_pool_size;
-
-Add: innodb_buffer_pool_size=[x]G /etc/mysql/mysql.conf.d/mysqld.cnf (Example: innodb_buffer_pool_size=27G)
-    Make sure add it under [mysqld]
-sudo service mysql restart
+    Add: innodb_buffer_pool_size=[x]G to /etc/mysql/mysql.conf.d/mysqld.cnf (Example: innodb_buffer_pool_size=27G)
+        Make sure add it under [mysqld]
+    sudo service mysql restart

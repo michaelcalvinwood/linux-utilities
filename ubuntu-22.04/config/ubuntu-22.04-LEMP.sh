@@ -89,7 +89,7 @@ phpinfo();" > /var/www/$Domain/info.php
 
 
 # Install and Configure mysql
-sudo ufw status
+sudo ufw allow mysql
 sudo apt install -y mysql-server
 
 mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$DBPassword';"
@@ -98,6 +98,7 @@ mysql -e "DROP USER ''@'$(hostname)'"
 mysql -e "DROP DATABASE test"
 mysql -e "FLUSH PRIVILEGES"
 
+cp mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 
 # Install and Configure letsencrypt ssl
 

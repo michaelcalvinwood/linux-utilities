@@ -1,8 +1,8 @@
 Backup:
 
-    mysqldump –p[password] -u [username] [database_name] > [dump_file.sql]
+    mysqldump –p[password] -u [username] [database_name] --column-statistics=0 > [dump_file.sql]
 
-    mysqldump –p[password] -h [hostname] -u [username] [database_name] > [dump_file.sql]
+    mysqldump –p[password] -h [hostname] -u [username] [database_name] --column-statistics=0 > [dump_file.sql]
 
 Restore:
     mysql -p[password] -u [username] [database_name] < [dump_file.sql]

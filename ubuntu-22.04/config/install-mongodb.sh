@@ -1,8 +1,7 @@
 #!/bin/bash
 # https://techviewleo.com/install-mongodb-on-ubuntu-linux/
 # config: /etc/mongod.conf
-
-
+# autocreate roles via bash: https://gist.github.com/sarjarapu/761e4fc1ea7c5d46f1fb64d973d5a6bf
 
 sudo apt update
 sudo apt -y install wget curl gnupg2 software-properties-common apt-transport-https ca-certificates lsb-release
@@ -14,3 +13,8 @@ sudo apt update
 sudo apt -y install mongodb-org
 
 sudo systemctl enable --now mongod
+
+sudo systemctl status mongod
+
+mongod --version
+

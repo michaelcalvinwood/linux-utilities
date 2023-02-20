@@ -7,7 +7,7 @@ else
   exit
 fi
 
-if [ -n "$1" ]; then
+if [ -n "$2" ]; then
   Db=$2
 else
   echo "Enter Second Parameter: Database Name"

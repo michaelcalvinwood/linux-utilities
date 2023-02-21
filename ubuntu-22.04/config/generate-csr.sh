@@ -2,7 +2,7 @@
 if [ -n "$1" ]; then
   Domain=$1
 else
-  echo "Enter domain"
+  echo "Param 1 must be domain name"
   exit
 fi
 

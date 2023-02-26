@@ -7,4 +7,4 @@ sudo apt-get install -y nodejs
 # Install pm2 node process manager
 npm i pm2 -g
 
-npm install -g npm@9.5.0
+npm install -g npm@9.5.1

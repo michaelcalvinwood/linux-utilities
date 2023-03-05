@@ -9,15 +9,15 @@ else
   exit
 fi
 
-apt-get update -y
-apt-get upgrade -y
-apt-get install libssl-dev pkg-config git gcc g++ make build-essential gnupg2 -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev pkg-config git gcc g++ make build-essential gnupg2 -y
 
 # Install nodeJS
 sudo apt update
 curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
-sudo bash nodesource_setup.sh
-sudo apt-get install -y nodejs
+sudo DEBIAN_FRONTEND=noninteractive bash nodesource_setup.sh
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
 
 # Install pm2 node process manager
 npm i pm2 -g
@@ -26,7 +26,7 @@ npm install -g npm@9.5.1
 
 # Install and Configure mysql
 sudo ufw allow mysql
-sudo apt install -y mysql-server
+sudo DEBIAN_FRONTEND=noninteractive apt install -y mysql-server
 
 mysql -e "create database etherpaddb;"
 mysql -e "CREATE USER etherpad@localhost IDENTIFIED BY '$Password';"
@@ -54,10 +54,12 @@ chmod 0755 /home/keys/*
 
 # create etherpad user
 adduser --home /opt/etherpad --shell /bin/bash etherpad
-install -d -m 755 -o etherpad -g etherpad /opt/etherpad
+sudo DEBIAN_FRONTEND=noninteractive install -d -m 755 -o etherpad -g etherpad /opt/etherpad
 
 # copy settings.json to a place where etherpad user can access it
 cp settings.json /opt/etherpad
+cp install-etherpad-part-2-as-etherpad.sh /opt/etherpad
+chmod 0777 /opt/etherpad/install-etherpad-part-2-as-etherpad.sh
 
 su - etherpad
 

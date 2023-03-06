@@ -53,7 +53,11 @@ chmod 0755 /home/keys/*
 
 
 # create etherpad user
-adduser --home /opt/etherpad --shell /bin/bash etherpad
+adduser --home /opt/etherpad --shell /bin/bash --disabled-password --gecos "" etherpad
+# make etherpad a sudo user
+usermod -aG sudo etherpad
+
+# install etherpad
 sudo DEBIAN_FRONTEND=noninteractive install -d -m 755 -o etherpad -g etherpad /opt/etherpad
 
 # copy settings.json to a place where etherpad user can access it

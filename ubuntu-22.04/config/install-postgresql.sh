@@ -28,6 +28,11 @@ cd pgvector
 make
 make install
 
-sudo -u postgres psql < postgres.sql
+sudo -u postgres psql < /root/config/postgres.sql
+
+ufw allow 22/tcp
+ufw allow 5432/tcp
+ufw enable
+
 # sudo -u postgres psql
 

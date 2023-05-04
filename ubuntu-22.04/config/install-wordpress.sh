@@ -31,9 +31,11 @@ sudo apt install -y php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap
 
 sudo systemctl restart nginx
 
-sudo mkdir -p /var/www/dev-08.pymnts.com/src
+rm -rf /vaw/www/delta.pymnts.com/
 
-cd /var/www/dev-08.pymnts.com/src
+sudo mkdir -p /var/www/delta.pymnts.com/src
+
+cd /var/www/delta.pymnts.com/src
 
 sudo wget http://wordpress.org/latest.tar.gz
 
@@ -43,7 +45,7 @@ sudo mv latest.tar.gz wordpress-`date "+%Y-%m-%d"`.tar.gz
 
 sudo mv wordpress/* ../
 
-sudo chown -R www-data:www-data /var/www/dev-08.pymnts.com
+sudo chown -R www-data:www-data /var/www/delta.pymnts.com
 
 # visit domain to finish setting up
 

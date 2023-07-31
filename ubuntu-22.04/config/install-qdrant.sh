@@ -14,7 +14,7 @@ sudo systemctl status docker
 
 mkdir /home/qdrant
 docker pull qdrant/qdrant
-docker run -d -p 6333:6333 -v /home/qdrant/:/qdrant/storage qdrant/qdrant
+docker run -d -p 127.0.0.1:6333:6333 -v /home/qdrant/:/qdrant/storage qdrant/qdrant
 
 # Confirm qdrant is running
 

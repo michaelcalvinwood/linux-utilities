@@ -24,6 +24,7 @@ fi
 
 # Install and Configure nginx
 sudo apt update
+sudo apt upgrade -y
 sudo apt install -y nginx libnginx-mod-http-headers-more-filter
 sudo ufw app list
 sudo ufw allow 'Nginx HTTP'

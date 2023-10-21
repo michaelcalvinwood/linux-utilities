@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copying qdrant image from machine to machine: https://www.linkedin.com/pulse/how-copy-docker-image-from-one-machine-another-abhishek-rana/
 
 # Install docker
 sudo apt update

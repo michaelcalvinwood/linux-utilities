@@ -20,6 +20,13 @@ else
   exit
 fi
 
+if [ -n "$4" ]; then
+  Host=$4
+else
+  echo "Enter Fourth parameter: Host"
+  exit
+fi
+
 
 mysql -u root -e "CREATE DATABASE $Database";
 
@@ -31,11 +38,11 @@ sudo apt install -y php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap
 
 sudo systemctl restart nginx
 
-rm -rf /vaw/www/delta.pymnts.com/
+rm -rf /vaw/www/$Host/
 
-sudo mkdir -p /var/www/delta.pymnts.com/src
+sudo mkdir -p /var/www/$Host/src
 
-cd /var/www/delta.pymnts.com/src
+cd /var/www/$Host/src
 
 sudo wget http://wordpress.org/latest.tar.gz
 
@@ -45,9 +52,12 @@ sudo mv latest.tar.gz wordpress-`date "+%Y-%m-%d"`.tar.gz
 
 sudo mv wordpress/* ../
 
-sudo chown -R www-data:www-data /var/www/delta.pymnts.com
+sudo chown -R www-data:www-data /var/www/$Host
+sudo find /var/www/$Host/ -type d -exec chmod 750 {} \;
+sudo find /var/www/$Host/ -type f -exec chmod 640 {} \;
 
 # visit domain to finish setting up
 
+curl -s https://api.wordpress.org/secret-key/1.1/salt/
 echo "Visit domain to finish setup";
 

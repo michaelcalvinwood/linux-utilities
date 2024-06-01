@@ -43,3 +43,11 @@ chmod -R u+rwX,g+rwX,u+rx /var/log/redis
 chmod +r /etc/redis/redis.conf
 
 systemctl restart redis
+
+# Install certbot
+sudo snap install core; 
+sudo snap refresh core
+
+sudo snap install --classic certbot
+
+sudo ln -s /snap/bin/certbot /usr/bin/certbot

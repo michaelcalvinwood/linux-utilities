@@ -17,7 +17,7 @@ sudo apt-get install -y nodejs
 # Install pm2 node process manager
 npm i pm2 -g
 
-npm install -g npm@9.5.1
+sudo npm install -g npm@latest
 
 # Install and Configure mysql
 sudo ufw allow mysql
